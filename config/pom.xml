@@ -6,7 +6,7 @@
 
     <groupId>org.kontza</groupId>
     <artifactId>musical-umbrella-config</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>musical-umbrella-config</name>
     <packaging>jar</packaging>
 

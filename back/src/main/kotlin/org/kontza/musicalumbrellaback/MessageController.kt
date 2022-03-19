@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class MessageController(val service: MessageService) {
+
     @GetMapping("/")
     fun getMessages(): List<Message> = service.getMessages()
 
     @PostMapping("/")
-    fun addPost(@RequestBody message: Message) {
-        service.addPost(message)
+    fun addMessage(@RequestBody message: Message) {
+        service.addMessage(message)
     }
 }

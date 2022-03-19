@@ -9,6 +9,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: UUID
+                  defaultValueComputed: random_uuid()
                   constraints:
                     primaryKey: true
                     nullable: false
