@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: rumpu-jussi
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name:  id
+                  value:  1
+              - column:
+                  name: text
+                  value: Hello!
+            tableName:  messages
+        - insert:
+            columns:
+              - column:
+                  name:  id
+                  value:  2
+              - column:
+                  name: text
+                  value: Bonjour!
+            tableName:  messages
+        - insert:
+            columns:
+              - column:
+                  name:  id
+                  value:  3
+              - column:
+                  name: text
+                  value: Privet!
+            tableName:  messages

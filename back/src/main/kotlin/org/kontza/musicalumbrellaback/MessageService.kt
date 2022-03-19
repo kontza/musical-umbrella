@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service
 @Service
 class MessageService(val db: MessageRepository) {
 
-    fun findMessages(): List<Message> = db.findMessages()
+    fun getMessages(): List<Message> = db.getMessages()
 
-    fun post(message: Message){
+    fun addPost(message: Message){
         db.save(message)
     }
 }
