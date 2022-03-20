@@ -23,7 +23,7 @@
         <maven-remote-resources-plugin.version>1.7.0</maven-remote-resources-plugin.version>
         <musical-umbrella-config.version>1.0.0</musical-umbrella-config.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
         <zipkin.brave.version>5.13.3</zipkin.brave.version>
     </properties>
     <dependencyManagement>
@@ -58,6 +58,10 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
