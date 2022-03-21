@@ -2,9 +2,9 @@
 Funny name. However; this is an exercise in multimodule Maven with 
 an external dependency bringing part of properties.
 
-Additionally there is a Python script, `simple-zipkin`, that receives 
-trace data from `spring-cloud-sleuth-zipkin`.  I added it because I
-wanted to see if data really is sent to port 9411.
-
-Next up: I'm going to add Grafana Tempo into the mix, and see if I
-can get an UI for traces, too.
+# Bonus Content
+There's a Docker composition in `grafana` directory. It contains Grafana, Loki, and Tempo.
+Start it up, then run `SPRING_PROFILES_ACTIVE=loki mvn spring-boot:run -pl :musical-umbrella-back`.
+Once the app is running, run `http http://localhost:3003`. Now you can check logs from Loki using
+`{app="MusicalUmbrella"}` query statement. If you find a line containing a trace ID, there should
+be a button next to it taking you to the corresponding trace in Tempo.
