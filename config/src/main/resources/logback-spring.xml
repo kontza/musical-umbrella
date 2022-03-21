@@ -16,11 +16,7 @@
                     <pattern>app=${appName},host=${HOSTNAME},level=%level</pattern>
                 </label>
                 <message>
-                    <!-- <pattern>l=%level h=${HOSTNAME} c=%logger{20} t=%thread | %msg %ex</pattern> -->
-                    <!-- <pattern>c=%logger{20} t=%thread | %msg %ex</pattern> -->
-                    <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %level [${appName},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}]
-                        [${HOSTNAME}] [%logger{36}.%M] - %msg %n
-                    </pattern>
+                    <pattern>${FILE_LOG_PATTERN}</pattern>
                 </message>
                 <sortByTime>true</sortByTime>
             </format>
@@ -31,17 +27,8 @@
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
-    <springProfile name="!loki">
-        <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
-            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
-                <jsonFormatter
-                        class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
-                    <prettyPrint>true</prettyPrint>
-                </jsonFormatter>
-                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
-            </layout>
-        </appender>
 
+    <springProfile name="!loki">
         <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>

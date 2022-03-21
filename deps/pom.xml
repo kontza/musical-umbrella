@@ -20,6 +20,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <!-- Dependencies -->
         <kotlin-logging-jvm.version>2.1.21</kotlin-logging-jvm.version>
+        <loki-logback-appender.version>1.3.2</loki-logback-appender.version>
         <maven-remote-resources-plugin.version>1.7.0</maven-remote-resources-plugin.version>
         <musical-umbrella-config.version>1.0.0</musical-umbrella-config.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,22 +46,22 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>${liquibase.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.github.loki4j</groupId>
-                <artifactId>loki-logback-appender</artifactId>
-                <version>${loki-logback-appender.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.kontza</groupId>
-                <artifactId>musical-umbrella-config</artifactId>
-                <version>${musical-umbrella-config.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kontza</groupId>
+            <artifactId>musical-umbrella-config</artifactId>
+            <version>${musical-umbrella-config.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.loki4j</groupId>
+            <artifactId>loki-logback-appender</artifactId>
+            <version>${loki-logback-appender.version}</version>
         </dependency>
     </dependencies>
     <build>
