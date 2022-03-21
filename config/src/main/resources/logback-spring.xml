@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <springProperty scope="context" name="lokiUrl" source="logging.loki.url" defaultValue="http://localhost:3100"/>
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="UNKNOWN_APP"/>
+    <springProperty scope="context" name="zipkinService" source="spring.zipkin.service.name" defaultValue=""/>
+
+    <springProfile name="loki">
+        <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+            <http>
+                <url>${lokiUrl}/loki/api/v1/push</url>
+            </http>
+            <format>
+                <label>
+                    <pattern>app=${appName},host=${HOSTNAME},level=%level</pattern>
+                </label>
+                <message>
+                    <!-- <pattern>l=%level h=${HOSTNAME} c=%logger{20} t=%thread | %msg %ex</pattern> -->
+                    <!-- <pattern>c=%logger{20} t=%thread | %msg %ex</pattern> -->
+                    <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %level [${appName},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}]
+                        [${HOSTNAME}] [%logger{36}.%M] - %msg %n
+                    </pattern>
+                </message>
+                <sortByTime>true</sortByTime>
+            </format>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="LOKI"/>
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+    <springProfile name="!loki">
+        <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter
+                        class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                    <prettyPrint>true</prettyPrint>
+                </jsonFormatter>
+                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+</configuration>

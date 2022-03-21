@@ -2,3 +2,5 @@
 data
 target/
 **/.flattened-pom.xml
+grafana/grafana-data
+grafana/tempo-data
